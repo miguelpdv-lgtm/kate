@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kate Cabarcas Peluquería · Rizos y Lisos en Barranquilla</title>
+  <meta name="description" content="Peluquería de Kate Cabarcas en Barranquilla, especializada en rizos y lisos: corte en seco, definición, keratina sin formol, color y tratamientos. Agenda tu cita por WhatsApp.">
+  <meta name="theme-color" content="#14110d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kate Cabarcas Peluquería · Rizos y Lisos">
+  <meta property="og:description" content="Especialistas en rizos y lisos en Barranquilla. Agenda tu cita por WhatsApp.">
+  <meta property="og:image" content="assets/img/og.jpg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/MsMadi-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Cinzel-VF.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/fotos/rizos-perfil.jpg">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/components/bundle.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="kc">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <div id="inicio" data-slot="hero"></div>
+
+  <div class="menu-panel" id="menu-panel" hidden>
+    <button class="menu-panel__cerrar" type="button" aria-label="Cerrar menú" data-icon="cerrar"></button>
+    <nav aria-label="Menú principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#texturas">Rizos y lisos</a>
+      <a href="#carta">Carta de precios</a>
+      <a href="#salon">El salón</a>
+      <a href="#reservar">Reservar</a>
+    </nav>
+  </div>
+
+  <main id="contenido">
+    <section class="seccion" id="salon" aria-labelledby="salon-titulo">
+      <div class="contenedor contenedor--estrecho centro">
+        <span class="kc-eyebrow">El salón</span>
+        <h2 class="titulo" id="salon-titulo">Dos texturas, una sola obsesión</h2>
+        <div data-slot="ornamento"></div>
+        <p class="kc-lead">Cuidamos cada rizo y cada mechón liso como si fuera el único.</p>
+        <p class="texto">En Kate Cabarcas Peluquería leemos tu cabello antes de tocarlo: patrón, porosidad y la historia de lo que le has hecho. Con eso definimos el corte, el tratamiento o el alisado que necesita, sin fórmulas de catálogo.</p>
+        <p class="texto" id="kate">Rizos del 2A al 4C, cortados en seco y rizo a rizo. Lisos de espejo con keratina sin formol. Y el tiempo que haga falta para que salgas sintiéndote tú.</p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alt" id="servicios" aria-labelledby="servicios-titulo">
+      <div class="contenedor">
+        <div class="centro cabecera">
+          <span class="kc-eyebrow">Servicios</span>
+          <h2 class="titulo" id="servicios-titulo">Nuestros servicios</h2>
+          <p class="kc-lead">Cada servicio empieza con una valoración de tu cabello.</p>
+        </div>
+        <div class="grilla-servicios" data-slot="servicios"></div>
+      </div>
+    </section>
+
+    <section class="seccion" id="texturas" aria-labelledby="texturas-titulo">
+      <div class="contenedor">
+        <div class="centro cabecera">
+          <span class="kc-eyebrow">Especialidad</span>
+          <h2 class="titulo" id="texturas-titulo">De rizo a liso, con control</h2>
+        </div>
+        <div data-slot="dualidad"></div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alt" id="carta" aria-labelledby="carta-titulo">
+      <div class="contenedor">
+        <div class="centro cabecera">
+          <span class="kc-eyebrow">Precios</span>
+          <h2 class="titulo" id="carta-titulo">Carta de servicios</h2>
+          <p class="kc-lead">Precios de referencia. Los servicios variables se confirman en la valoración.</p>
+        </div>
+        <div class="grilla-carta">
+          <div id="carta-rizos" data-slot="carta-rizos"></div>
+          <div id="carta-lisos" data-slot="carta-lisos"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="clientas" aria-labelledby="clientas-titulo">
+      <div class="contenedor">
+        <div class="centro cabecera">
+          <span class="kc-eyebrow">Clientas</span>
+          <h2 class="titulo" id="clientas-titulo">Lo que dicen de nosotras</h2>
+        </div>
+        <div data-slot="testimonio"></div>
+      </div>
+    </section>
+
+    <div id="reservar" data-slot="agenda"></div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__grilla">
+      <div>
+        <p class="pie__marca">Kate Cabarcas</p>
+        <p class="pie__sub">Peluquería · Rizos y Lisos</p>
+      </div>
+      <div>
+        <h3>Visítanos</h3>
+        <p data-config="ciudad"></p>
+      </div>
+      <div>
+        <h3>Horario</h3>
+        <p data-config="horario"></p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p><a data-config="telefono" data-wa href="#"></a></p>
+      </div>
+    </div>
+    <p class="pie__legal contenedor">© <span data-anio></span> Kate Cabarcas Peluquería. Fotos: Unsplash.</p>
+  </footer>
+
+  <div data-slot="fab"></div>
+</div>
+
+<noscript><p class="sin-js">Para reservar escríbenos por WhatsApp.</p></noscript>
+<script src="assets/components/bundle.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/* Kate Cabarcas Peluquería — maquetación de la landing. Los componentes viven en components/bundle.css. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--marble); }
+.kc { min-height: 100vh; }
+.kc img { max-width: 100%; }
+[id] { scroll-margin-top: var(--space-5); }
+
+.saltar { position: absolute; left: var(--space-4); top: -60px; z-index: 50; padding: var(--space-3) var(--space-4); background: var(--raised); color: var(--ink); font: 500 14px/1 var(--font-sans); }
+.saltar:focus { top: var(--space-4); }
+
+/* Secciones */
+.seccion { padding: var(--space-9) var(--space-5); background: var(--marble); }
+.seccion--alt { background: var(--marble-alt); }
+.contenedor { max-width: var(--container); margin: 0 auto; }
+.contenedor--estrecho { max-width: 760px; }
+.centro { text-align: center; }
+.centro .kc-lead { margin-left: auto; margin-right: auto; }
+.cabecera { margin-bottom: var(--space-7); }
+.titulo { margin: var(--space-3) 0 var(--space-4); font: 500 40px/46px var(--font-display); letter-spacing: .03em; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+.kc-lead { margin-top: 0; margin-bottom: 0; }
+.texto { max-width: var(--measure); margin: var(--space-4) auto 0; font: 400 16px/27px var(--font-sans); color: var(--ink-muted); }
+#salon .kc-ornament { margin: var(--space-6) 0 var(--space-6); }
+#salon .kc-lead { margin-bottom: var(--space-5); }
+
+.grilla-servicios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+.grilla-carta { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 1040px; margin: 0 auto; }
+
+/* Agenda sin turnos publicados: solo el botón */
+.kc-agenda .kc-cta { justify-self: start; }
+.kc-agenda__turnos:empty, .kc-agenda__turnos:not(:has(label)) { display: none; }
+
+/* Menú móvil */
+.menu-panel { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; background: var(--noir); color: var(--on-noir); }
+.menu-panel[hidden] { display: none; }
+.menu-panel nav { display: grid; gap: var(--space-5); text-align: center; }
+.menu-panel a { color: inherit; text-decoration: none; font: italic 400 34px/1.1 var(--font-editorial); }
+.menu-panel a:hover, .menu-panel a:focus-visible { color: #d8ae5a; }
+.menu-panel__cerrar { position: absolute; top: var(--space-4); right: var(--space-4); display: grid; place-items: center; width: 48px; height: 48px; background: none; border: 0; color: inherit; cursor: pointer; }
+
+/* Pie */
+.pie { padding: var(--space-8) var(--space-5) var(--space-5); background: var(--noir); color: var(--on-noir); border-top: var(--hairline) solid var(--gold); }
+.pie__grilla { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--space-6); }
+.pie__marca { margin: 0; font: 600 26px/1.1 var(--font-display); letter-spacing: .04em; text-transform: uppercase; background: var(--kc-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pie__sub { margin: var(--space-2) 0 0; font: 500 12px/16px var(--font-display); letter-spacing: .3em; text-transform: uppercase; color: #d8ae5a; }
+.pie h3 { margin: 0 0 var(--space-2); font: 500 12px/16px var(--font-sans); letter-spacing: .2em; text-transform: uppercase; color: #d8ae5a; }
+.pie p { margin: 0; font: 400 15px/24px var(--font-sans); color: #b5a892; }
+.pie a { color: var(--on-noir); text-underline-offset: 4px; text-decoration-color: rgba(216, 174, 90, .6); }
+.pie a:hover { color: #d8ae5a; }
+.pie .pie__legal { margin: var(--space-7) auto 0; padding-top: var(--space-4); border-top: var(--hairline) solid rgba(244, 239, 230, .14); font-size: 12px; }
+.pie a:focus-visible { outline: var(--ring) solid #e9c77f; outline-offset: 3px; }
+
+.sin-js { margin: 0; padding: var(--space-5); text-align: center; font: 400 16px/1.5 var(--font-sans); }
+
+@media (max-width: 900px) {
+  .grilla-servicios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pie__grilla { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .seccion { padding: var(--space-8) var(--space-4); }
+  .titulo { font-size: 30px; line-height: 36px; }
+  .kc-lead { font-size: 19px; line-height: 28px; }
+  .grilla-servicios, .grilla-carta { grid-template-columns: 1fr; }
+  .kc-raya__palabra { font-size: clamp(52px, 15vw, 84px); }
+  .pie__grilla { grid-template-columns: 1fr; }
+}
