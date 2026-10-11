@@ -26,6 +26,12 @@ body { margin: 0; background: var(--marble); }
 .grilla-servicios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 .grilla-carta { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 1040px; margin: 0 auto; }
 
+/* Héroe: cada foto ocupa solo su lado de la raya para que la persona no quede cortada.
+   La foto de rizos va en espejo para que las dos miren hacia el centro. */
+.kc-raya .kc-raya__foto img { position: absolute; top: 0; height: 100%; }
+.kc-raya .kc-raya__foto--rizos img { left: 0; width: var(--split); object-position: 62% 22%; transform: scaleX(-1); }
+.kc-raya .kc-raya__foto--lisos img { right: 0; width: calc(100% - var(--split)); object-position: 66% 58%; }
+
 /* Agenda sin turnos publicados: solo el botón */
 .kc-agenda .kc-cta { justify-self: start; }
 .kc-agenda__turnos:empty, .kc-agenda__turnos:not(:has(label)) { display: none; }
