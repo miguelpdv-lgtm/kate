@@ -3,11 +3,15 @@
   'use strict';
 
   // Datos del salón: cámbialos aquí.
+  // Datos tomados de la página de reservas en Weibook.
   var CONFIG = {
-    whatsapp: '573000000000',            // número con indicativo, sin "+" ni espacios
-    telefono: 'WhatsApp +57 300 000 0000',
-    ciudad: 'Barranquilla, Atlántico',
-    horario: 'Martes a sábado, 9:00 a 19:00'
+    whatsapp: '573205416557',            // número con indicativo, sin "+" ni espacios
+    telefono: 'WhatsApp 320 541 6557',
+    direccion: 'Barrio Santa Clara\nMz F Lote 14, piso 2',
+    ciudad: 'Cartagena, Colombia',
+    horario: 'Martes a viernes: 10:00 a 20:00\nSábado: 9:15 a 20:00\nDomingo: 11:00 a 17:00\nLunes: cerrado',
+    reservas: 'https://book.weibook.co/kate-peluqueria-prestige-barber-club',
+    instagram: 'https://www.instagram.com/rizosylisoskatepeluqueria'
   };
 
   var K = window.KC;
@@ -37,13 +41,19 @@
   hero.innerHTML = K.Hero({
     altRizos: 'Mujer de perfil con rizos definidos',
     altLisos: 'Cabello largo y liso movido por el viento',
+    intro: 'Peluquería de Kate Cabarcas en Cartagena, para dos texturas',
     creditos: 'Fotos: Unsplash'
   });
 
   // Enlaces de la navegación del héroe.
-  var destinos = { 'Rizos': '#carta-rizos', 'Lisos': '#carta-lisos', 'Color': '#servicios', 'El salón': '#salon', 'Kate': '#kate' };
+  var destinos = { 'Rizos': 'rizos', 'Lisos': 'lisos', 'Color': 'color' };
+  var anclas = { 'El salón': '#salon', 'Kate': '#kate' };
   Array.prototype.forEach.call(hero.querySelectorAll('.kc-nav__links a'), function (a) {
-    var d = destinos[a.textContent.trim()]; if (d) a.setAttribute('href', d);
+    var t = a.textContent.trim();
+    if (destinos[t]) {
+      a.setAttribute('href', '#carta');
+      a.addEventListener('click', function (e) { e.preventDefault(); verCategoria(destinos[t], true); });
+    } else if (anclas[t]) a.setAttribute('href', anclas[t]);
   });
   hero.querySelector('.kc-nav__seal').setAttribute('href', '#inicio');
   var reservarNav = hero.querySelector('.kc-nav .kc-hebra');
@@ -73,43 +83,56 @@
   slot('ornamento').innerHTML = K.Ornament({ word: 'Kate' });
 
   slot('servicios').innerHTML = [
-    K.ServiceCard({ icon: 'rizos', title: 'Definición de rizos', text: 'Lavado con método curly, hidratación profunda y definición con difusor.', price: '$ 150.000', duration: '2 h', tag: { tone: 'rizos', label: 'Favorito' } }),
-    K.ServiceCard({ icon: 'corte', title: 'Corte en seco', text: 'Cortamos rizo a rizo, respetando la forma natural de tu patrón.', price: '$ 90.000', duration: '1 h' }),
-    K.ServiceCard({ icon: 'keratina', title: 'Alisado de keratina', text: 'Liso brillante y sin frizz hasta por 4 meses, con fórmula libre de formol.', price: '$ 280.000', duration: '3 h', tag: { tone: 'lisos', label: 'Lisos' } }),
-    K.ServiceCard({ icon: 'color', title: 'Color y balayage', text: 'Mechas y balayage que iluminan sin romper el rizo ni resecar el liso.', price: '$ 220.000', duration: '3 h' }),
-    K.ServiceCard({ icon: 'brushing', title: 'Cepillado', text: 'Un liso de espejo para el evento, con protección térmica.', price: '$ 60.000', duration: '1 h' }),
-    K.ServiceCard({ icon: 'tratamiento', title: 'Hidratación profunda', text: 'Recupera brillo y elasticidad según la porosidad de tu cabello.', price: '$ 120.000', duration: '1 h 30 min' })
+    K.ServiceCard({ icon: 'rizos', title: 'Definición de rizos', text: 'Lavado, acondicionado, definición y secado para realzar la forma natural de tu rizo.', price: '$ 80.000', duration: '1 h 20 min', tag: { tone: 'rizos', label: 'Rizos' } }),
+    K.ServiceCard({ icon: 'tratamiento', title: 'Spa Rizos Premium', text: 'Todo en uno: corte de forma, hidratación profunda, ozonoterapia y definición.', price: '$ 170.000', duration: '2 h' }),
+    K.ServiceCard({ icon: 'corte', title: 'Corte de forma rizos', text: 'Corte en seco que realza la forma de tus rizos. Se complementa con la definición.', price: '$ 75.000', duration: '40 min' }),
+    K.ServiceCard({ icon: 'keratina', title: 'Alisado Diamante', text: 'Alisado enjuagable con protocolo avanzado que cuida la hebra y deja el cabello liso y saludable.', price: '$ 350.000', duration: '3 h 55 min', tag: { tone: 'lisos', label: 'Lisos' } }),
+    K.ServiceCard({ icon: 'color', title: 'Balayage', text: 'Iluminación personalizada que respeta la textura y el historial de tu cabello, con prueba de mechón.', price: '$ 750.000', duration: '4 h' }),
+    K.ServiceCard({ icon: 'brushing', title: 'Blower', text: 'Lavado profesional, termoprotección, blower y planchado. El precio va según el largo.', price: '$ 25.000', duration: '30 min' })
   ].join('');
 
   var dualidad = slot('dualidad');
   dualidad.innerHTML = K.Duality({
-    rizos: { text: 'Cortes en seco, definición e hidratación pensados para cada patrón, del 2A al 4C.', cta: 'Ver carta de rizos' },
-    lisos: { text: 'Keratina, cirugía capilar y cepillados que dejan un liso de espejo, sin sacrificar la salud.', cta: 'Ver carta de lisos' }
+    rizos: { text: 'Cortes de forma, definición, spas y terapias para cabello rizado, afro y ondulado.', cta: 'Ver servicios de rizos' },
+    lisos: { text: 'Blower, Alisado Diamante y cortes de puntas que dejan un liso de espejo, sin sacrificar la salud.', cta: 'Ver servicios de lisos' }
   });
   var ctasDualidad = dualidad.querySelectorAll('.kc-hebra');
-  if (ctasDualidad[0]) ctasDualidad[0].addEventListener('click', function () { ir('#carta-rizos'); });
-  if (ctasDualidad[1]) ctasDualidad[1].addEventListener('click', function () { ir('#carta-lisos'); });
+  if (ctasDualidad[0]) ctasDualidad[0].addEventListener('click', function () { verCategoria('rizos', true); });
+  if (ctasDualidad[1]) ctasDualidad[1].addEventListener('click', function () { verCategoria('lisos', true); });
 
-  slot('carta-rizos').innerHTML = K.PriceMenu({ title: 'Rizos', items: [
-    { name: 'Diagnóstico de rizo', price: '$ 40.000', detail: 'Lectura de porosidad y patrón' },
-    { name: 'Corte en seco', price: '$ 90.000', detail: 'Rizo a rizo, con definición' },
-    { name: 'Definición', price: '$ 150.000', detail: 'Lavado, hidratación y difusor' },
-    { name: 'Hidratación profunda', price: '$ 120.000' },
-    { name: 'Color para rizos', price: 'desde $ 220.000', detail: 'Mechas y balayage sin romper el rizo' }
-  ] });
-  slot('carta-lisos').innerHTML = K.PriceMenu({ title: 'Lisos', items: [
-    { name: 'Cepillado', price: '$ 60.000', detail: 'Con protección térmica' },
-    { name: 'Corte y cepillado', price: '$ 110.000' },
-    { name: 'Alisado de keratina', price: 'desde $ 280.000', detail: 'Sin formol, hasta 4 meses' },
-    { name: 'Cirugía capilar', price: 'desde $ 250.000', detail: 'Reconstrucción y sellado' },
-    { name: 'Color y balayage', price: 'desde $ 220.000' }
-  ] });
+  // Carta completa por categorías (datos en assets/servicios.js).
+  var CATEGORIAS = window.KC_SERVICIOS || [];
+  var pestanas = slot('carta-tabs'), panel = slot('carta');
+  pestanas.innerHTML = CATEGORIAS.map(function (c) {
+    return '<button type="button" role="tab" id="tab-' + c.id + '" aria-controls="carta-panel" data-cat="' + c.id + '">' + c.title + '</button>';
+  }).join('');
+  function verCategoria(id, desplazar) {
+    var cat = CATEGORIAS.filter(function (c) { return c.id === id; })[0] || CATEGORIAS[0];
+    if (!cat) return;
+    Array.prototype.forEach.call(pestanas.children, function (b) {
+      var activa = b.getAttribute('data-cat') === cat.id;
+      b.setAttribute('aria-selected', activa ? 'true' : 'false');
+      b.tabIndex = activa ? 0 : -1;
+    });
+    panel.setAttribute('aria-labelledby', 'tab-' + cat.id);
+    panel.innerHTML = K.PriceMenu({ eyebrow: cat.items.length + (cat.items.length === 1 ? ' servicio' : ' servicios'), title: cat.title, items: cat.items });
+    if (desplazar) ir('#carta');
+  }
+  pestanas.addEventListener('click', function (e) { var b = e.target.closest('[data-cat]'); if (b) verCategoria(b.getAttribute('data-cat')); });
+  pestanas.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    var botones = Array.prototype.slice.call(pestanas.children), i = botones.indexOf(document.activeElement);
+    if (i < 0) return;
+    var sig = botones[(i + (e.key === 'ArrowRight' ? 1 : botones.length - 1)) % botones.length];
+    sig.focus(); verCategoria(sig.getAttribute('data-cat'));
+  });
+  verCategoria('rizos');
 
   // Testimonio de ejemplo del sistema de diseño: reemplázalo por uno real, con permiso de la clienta.
   slot('testimonio').innerHTML = K.Testimonial({
     quote: 'Llegué con el rizo cansado de planchas y salí con la melena que tenía de niña. Kate lee el cabello antes de tocarlo.',
     name: 'Valentina R.',
-    service: 'Clienta en Barranquilla',
+    service: 'Clienta en Cartagena',
     alt: 'Mujer con rizos afro definidos'
   });
 
@@ -121,7 +144,11 @@
     turnos: []
   });
   var ctaAgenda = agenda.querySelector('.kc-cta');
-  if (ctaAgenda) ctaAgenda.addEventListener('click', function () { abrir(wa('Hola Kate, quiero agendar una cita.')); });
+  if (ctaAgenda) {
+    ctaAgenda.addEventListener('click', function () { abrir(wa('Hola Kate, quiero agendar una cita.')); });
+    ctaAgenda.insertAdjacentHTML('afterend', K.Button({ label: 'Reservar en línea', variant: 'hebra-claro', href: CONFIG.reservas }));
+    var enLinea = ctaAgenda.nextElementSibling; enLinea.target = '_blank'; enLinea.rel = 'noopener';
+  }
 
   slot('fab').innerHTML = K.Fab({ href: wa('Hola Kate, quiero reservar una cita.') });
   var fab = document.querySelector('.kc-fab');
@@ -129,6 +156,7 @@
 
   // ---------- Pie ----------
   Array.prototype.forEach.call(document.querySelectorAll('[data-config]'), function (el) { el.textContent = CONFIG[el.getAttribute('data-config')]; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-link]'), function (a) { a.href = CONFIG[a.getAttribute('data-link')]; });
   Array.prototype.forEach.call(document.querySelectorAll('[data-wa]'), function (a) {
     a.href = wa('Hola Kate, quiero información.'); a.target = '_blank'; a.rel = 'noopener';
   });

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kate Cabarcas Peluquería · Rizos y Lisos en Barranquilla</title>
-  <meta name="description" content="Peluquería de Kate Cabarcas en Barranquilla, especializada en rizos y lisos: corte en seco, definición, keratina sin formol, color y tratamientos. Agenda tu cita por WhatsApp.">
+  <title>Kate Cabarcas Peluquería · Rizos y Lisos en Cartagena</title>
+  <meta name="description" content="Kate Peluquería &amp; Prestige Barber Club en Cartagena: especialistas en cabello rizado, afro, ondulado y liso. Spa de rizos, alisados, color, barbería, uñas, facial y masajes. Agenda por WhatsApp o en línea.">
   <meta name="theme-color" content="#14110d">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kate Cabarcas Peluquería · Rizos y Lisos">
-  <meta property="og:description" content="Especialistas en rizos y lisos en Barranquilla. Agenda tu cita por WhatsApp.">
+  <meta property="og:description" content="Especialistas en rizos y lisos en Cartagena. Agenda tu cita por WhatsApp o en línea.">
   <meta property="og:image" content="assets/img/og.jpg">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -30,7 +30,7 @@
     <nav aria-label="Menú principal">
       <a href="#servicios">Servicios</a>
       <a href="#texturas">Rizos y lisos</a>
-      <a href="#carta">Carta de precios</a>
+      <a href="#carta">Carta completa</a>
       <a href="#salon">El salón</a>
       <a href="#reservar">Reservar</a>
     </nav>
@@ -44,7 +44,7 @@
         <div data-slot="ornamento"></div>
         <p class="kc-lead">Cuidamos cada rizo y cada mechón liso como si fuera el único.</p>
         <p class="texto">En Kate Cabarcas Peluquería leemos tu cabello antes de tocarlo: patrón, porosidad y la historia de lo que le has hecho. Con eso definimos el corte, el tratamiento o el alisado que necesita, sin fórmulas de catálogo.</p>
-        <p class="texto" id="kate">Rizos del 2A al 4C, cortados en seco y rizo a rizo. Lisos de espejo con keratina sin formol. Y el tiempo que haga falta para que salgas sintiéndote tú.</p>
+        <p class="texto" id="kate">Somos especialistas en cabello rizado, afro, ondulado y liso, y cuidamos la imagen de toda la familia: peluquería, barbería con Prestige Barber Club, color, terapias capilares, uñas, cuidado facial, masajes y depilación. Cinco años creando experiencias de belleza para colombianos y visitantes en Cartagena.</p>
       </div>
     </section>
 
@@ -53,7 +53,7 @@
         <div class="centro cabecera">
           <span class="kc-eyebrow">Servicios</span>
           <h2 class="titulo" id="servicios-titulo">Nuestros servicios</h2>
-          <p class="kc-lead">Cada servicio empieza con una valoración de tu cabello.</p>
+          <p class="kc-lead">Los favoritos del salón. Cada servicio empieza con una valoración de tu cabello.</p>
         </div>
         <div class="grilla-servicios" data-slot="servicios"></div>
       </div>
@@ -74,12 +74,10 @@
         <div class="centro cabecera">
           <span class="kc-eyebrow">Precios</span>
           <h2 class="titulo" id="carta-titulo">Carta de servicios</h2>
-          <p class="kc-lead">Precios de referencia. Los servicios variables se confirman en la valoración.</p>
+          <p class="kc-lead">Precios en pesos colombianos. «Desde» indica que el valor final se confirma en la valoración, según largo y densidad.</p>
         </div>
-        <div class="grilla-carta">
-          <div id="carta-rizos" data-slot="carta-rizos"></div>
-          <div id="carta-lisos" data-slot="carta-lisos"></div>
-        </div>
+        <div class="carta-tabs" role="tablist" aria-label="Categorías de servicios" data-slot="carta-tabs"></div>
+        <div class="carta-panel" id="carta-panel" role="tabpanel" data-slot="carta"></div>
       </div>
     </section>
 
@@ -101,10 +99,11 @@
       <div>
         <p class="pie__marca">Kate Cabarcas</p>
         <p class="pie__sub">Peluquería · Rizos y Lisos</p>
+        <p class="pie__barber">&amp; Prestige Barber Club</p>
       </div>
       <div>
         <h3>Visítanos</h3>
-        <p data-config="ciudad"></p>
+        <p><span data-config="direccion"></span><br><span data-config="ciudad"></span></p>
       </div>
       <div>
         <h3>Horario</h3>
@@ -113,6 +112,8 @@
       <div>
         <h3>Contacto</h3>
         <p><a data-config="telefono" data-wa href="#"></a></p>
+        <p><a data-link="reservas" href="#" target="_blank" rel="noopener">Reservar en línea</a></p>
+        <p><a data-link="instagram" href="#" target="_blank" rel="noopener">Instagram</a></p>
       </div>
     </div>
     <p class="pie__legal contenedor">© <span data-anio></span> Kate Cabarcas Peluquería. Fotos: Unsplash.</p>
@@ -123,6 +124,7 @@
 
 <noscript><p class="sin-js">Para reservar escríbenos por WhatsApp.</p></noscript>
 <script src="assets/components/bundle.js"></script>
+<script src="assets/servicios.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

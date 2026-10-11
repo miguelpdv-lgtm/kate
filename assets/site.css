@@ -24,7 +24,13 @@ body { margin: 0; background: var(--marble); }
 #salon .kc-lead { margin-bottom: var(--space-5); }
 
 .grilla-servicios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
-.grilla-carta { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 1040px; margin: 0 auto; }
+
+/* Carta completa: pestañas por categoría */
+.carta-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); max-width: 920px; margin: 0 auto var(--space-6); }
+.carta-tabs button { flex: none; padding: 10px 16px; background: transparent; border: var(--hairline) solid var(--vein-strong); border-radius: var(--radius-xs); font: 500 12px/16px var(--font-sans); letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; transition: background-color .3s var(--kc-ease), color .3s var(--kc-ease), border-color .3s var(--kc-ease); }
+.carta-tabs button:hover { border-color: var(--gold); color: var(--gold-text); }
+.carta-tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--marble); }
+.carta-panel { max-width: 760px; margin: 0 auto; }
 
 /* Héroe: cada foto ocupa solo su lado de la raya para que la persona no quede cortada.
    La foto de rizos va en espejo para que las dos miren hacia el centro. */
@@ -32,8 +38,16 @@ body { margin: 0; background: var(--marble); }
 .kc-raya .kc-raya__foto--rizos img { left: 0; width: var(--split); object-position: 62% 22%; transform: scaleX(-1); }
 .kc-raya .kc-raya__foto--lisos img { right: 0; width: calc(100% - var(--split)); object-position: 66% 58%; }
 
+/* Héroe más oscuro y con tono bronce de la marca para que los textos se lean */
+.kc-raya .kc-raya__foto img { filter: brightness(.6) saturate(.75) sepia(.3) contrast(1.05); }
+.kc-raya .kc-raya__velo { background: linear-gradient(180deg, rgba(20, 17, 13, .75) 0%, rgba(20, 17, 13, .3) 30%, rgba(20, 17, 13, .3) 55%, rgba(20, 17, 13, .85) 100%); }
+.kc-raya .kc-raya__velo::after { content: ""; position: absolute; inset: 0; background: #6d400a; mix-blend-mode: color; opacity: .4; }
+.kc-raya .kc-raya__intro { color: #f4efe6; text-shadow: 0 1px 14px rgba(20, 17, 13, .85); }
+.kc-raya .kc-raya__palabra { text-shadow: 0 2px 24px rgba(20, 17, 13, .6); }
+
 /* Agenda sin turnos publicados: solo el botón */
 .kc-agenda .kc-cta { justify-self: start; }
+.kc-agenda > .kc-hebra { grid-column: 1 / -1; justify-self: end; margin-top: calc(-1 * var(--space-4)); }
 .kc-agenda__turnos:empty, .kc-agenda__turnos:not(:has(label)) { display: none; }
 
 /* Menú móvil */
@@ -48,9 +62,11 @@ body { margin: 0; background: var(--marble); }
 .pie { padding: var(--space-8) var(--space-5) var(--space-5); background: var(--noir); color: var(--on-noir); border-top: var(--hairline) solid var(--gold); }
 .pie__grilla { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--space-6); }
 .pie__marca { margin: 0; font: 600 26px/1.1 var(--font-display); letter-spacing: .04em; text-transform: uppercase; background: var(--kc-foil); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pie__barber { margin: var(--space-1) 0 0 !important; font: italic 400 17px/1.3 var(--font-editorial) !important; color: var(--on-noir) !important; }
 .pie__sub { margin: var(--space-2) 0 0; font: 500 12px/16px var(--font-display); letter-spacing: .3em; text-transform: uppercase; color: #d8ae5a; }
 .pie h3 { margin: 0 0 var(--space-2); font: 500 12px/16px var(--font-sans); letter-spacing: .2em; text-transform: uppercase; color: #d8ae5a; }
 .pie p { margin: 0; font: 400 15px/24px var(--font-sans); color: #b5a892; }
+.pie [data-config="horario"], .pie [data-config="direccion"] { white-space: pre-line; }
 .pie a { color: var(--on-noir); text-underline-offset: 4px; text-decoration-color: rgba(216, 174, 90, .6); }
 .pie a:hover { color: #d8ae5a; }
 .pie .pie__legal { margin: var(--space-7) auto 0; padding-top: var(--space-4); border-top: var(--hairline) solid rgba(244, 239, 230, .14); font-size: 12px; }
@@ -66,7 +82,10 @@ body { margin: 0; background: var(--marble); }
   .seccion { padding: var(--space-8) var(--space-4); }
   .titulo { font-size: 30px; line-height: 36px; }
   .kc-lead { font-size: 19px; line-height: 28px; }
-  .grilla-servicios, .grilla-carta { grid-template-columns: 1fr; }
+  .grilla-servicios { grid-template-columns: 1fr; }
+  .carta-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-left: calc(-1 * var(--space-4)); margin-right: calc(-1 * var(--space-4)); padding: 0 var(--space-4) var(--space-2); scrollbar-width: none; }
+  .carta-tabs::-webkit-scrollbar { display: none; }
+  .kc-agenda > .kc-hebra { justify-self: start; margin-top: 0; }
   .kc-raya__palabra { font-size: clamp(52px, 15vw, 84px); }
   .pie__grilla { grid-template-columns: 1fr; }
 }
